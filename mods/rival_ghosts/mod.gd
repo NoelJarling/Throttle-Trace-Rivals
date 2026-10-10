@@ -14,9 +14,8 @@ extends Node
 const FORMAT := "throttle-trace-ghost"
 const GHOSTS_DIR := "user://ghosts"
 const EXPORTS_DIR := "user://ghosts/exports"
-# Ashton Vale team livery and colors (from the game's default database)
 const LIVERY_KEY := "ashton_vale"
-const LIVERY_COLORS := [Color("229971ff"), Color("000000ff"), Color.SILVER]
+const LIVERY_COLORS := [Color.RED, Color.RED, Color.RED]
 
 var _ghost_car_scene: PackedScene = preload("res://ghosts/ghost_car.tscn")
 var _track: Track
