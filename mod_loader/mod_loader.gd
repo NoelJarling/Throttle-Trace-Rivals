@@ -6,13 +6,21 @@ extends Node
 ##   - a folder  user://mods/<name>/  containing mod.gd
 ##   - a .pck/.zip  user://mods/<name>.pck  (mounted into res://, may contain res://mods/<name>/mod.gd)
 ## mod.gd must `extends Node`; it is added as a child of this loader, so _ready() runs after all game autoloads.
+##
+## Mods are only loaded when the game is started with --enable-mods
+## (Steam launch options: `%command% --enable-mods`).
 
 const MODS_DIR := "user://mods"
+const ENABLE_FLAG := "--enable-mods"
 
 var loaded_mods: Dictionary = {}
 
 
 func _ready() -> void:
+	# Godot passes unknown args through get_cmdline_args(); args after "--" land in get_cmdline_user_args()
+	if not (ENABLE_FLAG in OS.get_cmdline_args() or ENABLE_FLAG in OS.get_cmdline_user_args()):
+		print("[ModLoader] mods disabled, add ", ENABLE_FLAG, " to the launch options to enable them")
+		return
 	print("[ModLoader] starting, scanning ", ProjectSettings.globalize_path(MODS_DIR))
 	DirAccess.make_dir_recursive_absolute(MODS_DIR)
 	_mount_packs()

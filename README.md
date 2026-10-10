@@ -40,9 +40,19 @@ Throttle Trace/            (user data folder)
     └── exports/
 ```
 
-### 3. Start the game
+### 3. Enable mods in the Steam launch options
 
-Start Throttle Trace normally through Steam. The mod creates the `ghosts/` folder and exports your existing PBs on first start.
+Mods are only loaded when the game is started with `--enable-mods`. In Steam: right-click Throttle Trace → **Properties → General → Launch Options** and enter:
+
+```
+%command% --enable-mods
+```
+
+Without this option the game runs completely unmodded, even with everything installed.
+
+### 4. Start the game
+
+Start Throttle Trace through Steam. The mod creates the `ghosts/` folder and exports your existing PBs on first start.
 
 ## Usage
 
@@ -51,9 +61,12 @@ Start Throttle Trace normally through Steam. The mod creates the `ghosts/` folde
 
 ## Uninstall
 
-Delete `override.cfg` from the game folder. To remove everything, also delete `mod_loader/`, `mods/` and `ghosts/` from the user data folder.
+To play without mods, just remove `--enable-mods` from the launch options.
+
+To uninstall, delete `override.cfg` from the game folder. To remove everything, also delete `mod_loader/`, `mods/` and `ghosts/` from the user data folder.
 
 ## Troubleshooting
 
 - **Mod stopped working after an update or "Verify integrity of game files":** Steam may have removed `override.cfg`. Copy it back into the game folder.
+- **Mods don't load at all:** check that the launch options contain `%command% --enable-mods`. Without it the log shows `[ModLoader] mods disabled`.
 - **Logs:** `logs/godot.log` in the user data folder. Mod loader messages start with `[ModLoader]`.
