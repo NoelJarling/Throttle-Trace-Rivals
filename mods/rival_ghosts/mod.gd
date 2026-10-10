@@ -1,6 +1,7 @@
 extends Node
 ## Rival Ghosts: in Time Attack, every ghost file in user://ghosts/ that matches
-## the current track is raced as a gold ghost next to your own PB ghost.
+## the current track is raced as a ghost in the Ashton Vale
+## livery next to your own PB ghost.
 ##
 ## Sharing: on game start and whenever you set a new PB, PB ghosts that aren't exported
 ## yet are added to user://ghosts/exports/<track name>_<player name>_<m-ss.mmm>.ttghost.
@@ -13,7 +14,9 @@ extends Node
 const FORMAT := "throttle-trace-ghost"
 const GHOSTS_DIR := "user://ghosts"
 const EXPORTS_DIR := "user://ghosts/exports"
-const RIVAL_COLOR := Color(1.0, 0.72, 0.1)
+# Ashton Vale team livery and colors (from the game's default database)
+const LIVERY_KEY := "ashton_vale"
+const LIVERY_COLORS := [Color("229971ff"), Color("000000ff"), Color.SILVER]
 
 var _ghost_car_scene: PackedScene = preload("res://ghosts/ghost_car.tscn")
 var _track: Track
@@ -93,7 +96,10 @@ func _spawn_rivals() -> void:
 		var car: Node3D = _ghost_car_scene.instantiate()
 		_track.add_child(car)
 		car.init(_track.player, rival.captures)
-		car.model.color = RIVAL_COLOR
+		car.model.livery = Team.liveries[LIVERY_KEY]
+		car.model.color = LIVERY_COLORS[0]
+		car.model.secondary_color = LIVERY_COLORS[1]
+		car.model.tertiary_color = LIVERY_COLORS[2]
 
 		var tag := Label3D.new()
 		tag.text = "%s  %s" % [rival.ghost.get("driver", "Rival"), Utils.format_seconds_to_minutes(rival.ghost.time)]
@@ -102,7 +108,7 @@ func _spawn_rivals() -> void:
 		tag.pixel_size = 0.0008
 		tag.font_size = 32
 		tag.outline_size = 8
-		tag.modulate = RIVAL_COLOR
+		tag.modulate = Color(1.0, 1.0, 1.0)
 		tag.no_depth_test = true
 		tag.position = Vector3(0, 1.2, 0)
 		car.add_child(tag)
