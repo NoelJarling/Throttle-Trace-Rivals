@@ -3,7 +3,7 @@
 An unofficial mod for [Throttle Trace](https://store.steampowered.com/app/4535730/) that lets you race your friends' personal-best ghosts in Time Attack.
 
 - Every ghost file in your `ghosts` folder that matches the current track is raced as a gold ghost, labelled with the driver's name and lap time, next to your own PB ghost.
-- Your own PB ghosts are exported automatically (on game start and whenever you set a new PB) to `ghosts/exports/`, ready to send to others. Existing files are never replaced or deleted.
+- Your own PB ghosts are exported automatically (when you open a track in Time Attack and whenever you set a new PB) to `ghosts/exports/`, ready to send to others. Existing files are never replaced or deleted.
 
 Built for Throttle Trace v0.39.0 (Godot 4.6). Game updates may break it.
 
@@ -52,7 +52,7 @@ Without this option the game runs completely unmodded, even with everything inst
 
 ### 4. Start the game
 
-Start Throttle Trace through Steam. The mod creates the `ghosts/` folder and exports your existing PBs on first start.
+Start Throttle Trace through Steam. The mod creates the `ghosts/` folder. Your PB for a track is exported the first time you open that track in Time Attack.
 
 ## Usage
 
