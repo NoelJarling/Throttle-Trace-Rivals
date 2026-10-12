@@ -3,8 +3,8 @@ extends Node
 ## the current track is raced as a ghost in the Ashton Vale
 ## livery next to your own PB ghost.
 ##
-## Sharing: on game start, when a time trial loads and whenever you set a new PB, PB ghosts that aren't exported
-## yet are added to user://ghosts/exports/<track name>_<player name>_<m-ss.mmm>.ttghost.
+## Sharing: when a time trial loads and whenever you set a new PB, the track's PB ghost,
+## if not exported yet, is added to user://ghosts/exports/<track name>_<player name>_<m-ss.mmm>.ttghost.
 ## Existing files are never replaced or deleted. Send a file to others;
 ## they drop it into their user://ghosts/ folder.
 ##
@@ -26,9 +26,6 @@ func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(EXPORTS_DIR)
 	get_tree().node_added.connect(_on_node_added)
 	TimeAttackManager.restarted.connect(_spawn_rivals)
-	# Convert existing PB ghosts into shareable files
-	for profile in TrackProfile.get_profiles(true, true):
-		_export_pb(profile)
 
 
 func _on_node_added(node: Node) -> void:
