@@ -3,7 +3,7 @@ extends Node
 ## the current track is raced as a ghost in the Ashton Vale
 ## livery next to your own PB ghost.
 ##
-## Sharing: on game start and whenever you set a new PB, PB ghosts that aren't exported
+## Sharing: on game start, when a time trial loads and whenever you set a new PB, PB ghosts that aren't exported
 ## yet are added to user://ghosts/exports/<track name>_<player name>_<m-ss.mmm>.ttghost.
 ## Existing files are never replaced or deleted. Send a file to others;
 ## they drop it into their user://ghosts/ folder.
@@ -46,6 +46,7 @@ func _on_track_initialized(track: Track) -> void:
 	_track = track
 	_rivals = []
 	var profile: TrackProfile = track.params.profile
+	_export_pb(profile)
 	track.player.lap_completed.connect(_on_lap_completed.bind(profile))
 
 	for file in DirAccess.get_files_at(GHOSTS_DIR):
