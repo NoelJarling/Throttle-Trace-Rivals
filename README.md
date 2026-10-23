@@ -5,7 +5,7 @@ An unofficial mod for [Throttle Trace](https://store.steampowered.com/app/453573
 - Every ghost file in your `ghosts` folder that matches the current track is raced as a gold ghost, labelled with the driver's name and lap time, next to your own PB ghost.
 - Your own PB ghosts are exported automatically (when you open a track in Time Attack and whenever you set a new PB) to `ghosts/exports/`, ready to send to others. Existing files are never replaced or deleted.
 
-Built for Throttle Trace v0.39.0 (Godot 4.6). Game updates may break it.
+Built for Throttle Trace v0.40.1 (Godot 4.6). Game updates may break it.
 
 ## Install
 
